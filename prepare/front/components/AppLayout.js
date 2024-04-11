@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Menu, Input, Row, Col } from 'antd';
 import styled from 'styled-components';
@@ -19,9 +19,13 @@ const SearchInput = styled(Input.Search)`
 import Link from 'next/link';
 import LoginForm from '../components/LoginForm.js';
 import UserProfile from '../components/UserProfile.js';
+import { useSelector } from 'react-redux'
 
 const AppLayout = ({ children }) => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+    // state로 부터 데이터를 받아오려면 useSelector Hooks필요
+    // const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const isLoggedIn = useSelector((state) => state.user.isLoggedIn)
 
     return(
         <>
@@ -42,7 +46,7 @@ const AppLayout = ({ children }) => {
             </Menu>
             <Row gutter={8}>{/** 컬럼 사이에 간격 gutter */}
                 <Col xs={24} md={6} >
-                    {isLoggedIn? <UserProfile setIsLoggedIn={setIsLoggedIn}/> : <LoginForm setIsLoggedIn={setIsLoggedIn}/>}
+                    {isLoggedIn? <UserProfile /> : <LoginForm />}
                 </Col>
                 <Col xs={24} md={12} >
                     {children}

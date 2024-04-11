@@ -12,6 +12,8 @@ import 'antd/dist/antd.css'; //ant-design 5버전 이상부터는 import필요 �
 import PropTypes  from 'prop-types';
 import Head from 'next/head';
 
+import wrapper from '../store/configureStore';
+
 const NodeBird = ({ Component}) => {
     return (
         <>
@@ -29,4 +31,4 @@ NodeBird.propTypes = {
     Component: PropTypes.elementType.isRequired,
 }
 
-export default NodeBird;
+export default wrapper.withRedux(NodeBird);
