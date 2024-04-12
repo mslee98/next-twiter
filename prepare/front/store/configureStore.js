@@ -11,6 +11,9 @@ const configureStore = () => {
         ? compose(applyMiddleware(...middlewares))
         : composeWithDevTools(applyMiddleware(...middlewares))
 
+    /**
+     * redux 단독 사용보다는 toolkit 사용을 지향하기 때문에 createStore를 잘 안사용하는것 같긴하네
+     */
     const store = createStore(reducer, enhancer);
     return store
 }

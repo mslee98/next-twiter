@@ -1,20 +1,18 @@
 import React, { useCallback } from 'react';
-import { Button, Input } from 'antd';
+import { Button, Input, Form } from 'antd';
 import Link from 'next/link'
 import styled from 'styled-components';
 import useInput from '../hooks/useInput';
-import { loginAction } from '../reducers';
+import { loginAction } from '../reducers/user';
 import { useDispatch } from 'react-redux'
 
 const ButtonWrapper = styled.div`
     margin-top: 10px;
 `;
 
-const FormWrapper = styled.form`
+const FormWrapper = styled(Form)`
     padding: '10px';
-`
-
-
+`;
 
 const LoginForm = () => {
     const dispatch = useDispatch()
@@ -27,14 +25,14 @@ const LoginForm = () => {
          * And-design에서 Form onFinish는 이미 event.preventDefault가 적용이 되어 있음
          */
 
-        dispatch(loginAction({id, password}))
         console.log(id, password)
+        dispatch(loginAction({id, password}))
         // setIsLoggedIn(true)
 
     }, [id, password])
 
     return (
-        <FormWrapper onSubmit={onSubmitForm} style={{ padding: '10px' }}>
+        <FormWrapper onFinish={onSubmitForm}>
             <div>
                 <label htmlFor="user-id">아이디</label>
                 <br />

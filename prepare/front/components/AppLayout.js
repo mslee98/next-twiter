@@ -25,7 +25,7 @@ const AppLayout = ({ children }) => {
 
     // state로 부터 데이터를 받아오려면 useSelector Hooks필요
     // const [isLoggedIn, setIsLoggedIn] = useState(false)
-    const isLoggedIn = useSelector((state) => state.user.isLoggedIn)
+    const {isLoggedIn} = useSelector((state) => state.user)
 
     return(
         <>
